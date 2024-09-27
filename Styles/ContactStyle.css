@@ -1,0 +1,86 @@
+body {
+    background-image: url(../Images/home8.jpg);
+    background-size: 1500px 700px;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+    body div {
+        font-size: 140%;
+    }
+
+#l1 {
+    margin-top: 10px;
+    display: flex;
+    list-style-type: none;
+    margin-left: 0;
+    margin-right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 10px;
+}
+
+
+    #l1 li {
+        padding: 5px;
+        margin-left: 5px;
+        float: right;
+        padding: 10px 10px;
+        color: white;
+    }
+
+
+        #l1 li a {
+            text-decoration: none;
+            padding: 10px 10px;
+        }
+
+        #l1 li #name {
+            margin-left: 650px;
+            font-size: 160%;
+        }
+
+        #l1 li a:hover {
+            border-radius: 20px;
+            background-color: rgba(128, 128, 128, 0.7);
+        }
+
+        #l1 li a.Active {
+            border: 2px solid red;
+            border-radius: 20px;
+            background-color: rgba(128, 128, 128, 0.7);
+        }
+
+
+        #l1 li div {
+            margin-left: 1300%;
+            color: red;
+        }
+
+b {
+    font-size: x-large;
+}
+
+a {
+    text-decoration: none;
+    padding: 10px 10px;
+    color: white;
+}
+
+.heading, b, a, li {
+    color: white;
+}
+
+.logo img {
+    height: 3rem;
+    margin-left: 800px;
+}
+
+div {
+    color: white;
+    margin-left: 2%;
+}
+
+    div h1 {
+        margin-left: 1%
+    }

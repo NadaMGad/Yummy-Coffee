@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="../Styles/OrderStyle.css">
+</head>
+
+<body>
+    <ul>
+        <li><a href="home.html"> Home</a></li>
+        <li><a class="Active" href="Menu.html"> Menu</a></li>
+        <li><a href="Contact.html"> Contact</a></li>
+        <li><a href="about.html"> about</a></li>
+
+        <a href="#" class="logo">
+            <img src="../Images/logo.jpg" alt="">
+        </a>
+    </ul>
+    <div class="container">
+        <h2>Order</h2>
+        <form id="orderForm" class="was-validated">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" class="form-control mb-2" id="fname" placeholder="Enter First Name" name="fname"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" class="form-control mb-2" id="lname" placeholder="Enter Last Name" name="lname"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control mb-2" id="email" placeholder="Enter email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Mobile Phone:</label>
+                <input type="text" class="form-control mb-2" id="phone" placeholder="Enter Phone Number" name="phone"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="product">Product:</label>
+                <input type="text" class="form-control mb-2" id="product" placeholder="Product Name" name="product"
+                       readonly>
+            </div>
+            <div class="form-group">
+                <label for="order">Your Order:</label>
+                <textarea class="form-control mb-2" id="order" placeholder="Enter Order Details" name="order" rows="4" required></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label><input type="checkbox" id="delivery" name="delivery"> Delivery</label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="resultMessage"></div>
+    </div>
+
+    <script>
+        // Function to extract query parameters from the URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Populate the product field with the product name from the URL
+        document.addEventListener("DOMContentLoaded", function () {
+            const productName = getQueryParameter('product');
+            if (productName) {
+                document.getElementById('product').value = productName;
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var formData = {
+                firstName: document.getElementById('fname').value,
+                lastName: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                orderDetails: document.getElementById('order').value,
+                product: document.getElementById('product').value,
+                delivery: document.getElementById('delivery').checked
+            };
+
+            fetch('/api/OrdersApi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('resultMessage').innerText = data.message;
+                })
+                .catch(error => {
+                    document.getElementById('resultMessage').innerText = 'Error: ' + error.message;
+                });
+        });
+    </script>
+</body>
+
+</html>
