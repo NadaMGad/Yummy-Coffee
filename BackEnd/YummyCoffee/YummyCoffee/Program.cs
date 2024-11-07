@@ -27,7 +27,7 @@ namespace YummyCoffee
 
             app.UseAuthorization();
 
-
+            app.UseStaticFiles();
             app.MapControllers();
 
             app.Run();
